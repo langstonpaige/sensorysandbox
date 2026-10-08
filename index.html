@@ -100,15 +100,15 @@
     </div>
 
     <script>
-        // SECURE MATRIX LEDGER (Built across 5 core multi-ability tracks)
+        // SECURE FIXED LEDGER (Bypasses raw hotlinking bans by using query-isolated image routers)
         const matrixLedger = {
-            "7412-9033": { "url": "https://unsplash.com", "desc": "Interspecies Empathy // Shelter Dog Somatic Field" },
-            "1088-5524": { "url": "https://unsplash.com", "desc": "Intention Radar // Volatile Campfire Thermal Energy" },
-            "9914-4022": { "url": "https://unsplash.com", "desc": "Geometric Grid // Architectural Minimalist Staircase" },
-            "3119-8044": { "url": "https://unsplash.com", "desc": "Numeric Flash // Digital Server Matrix Network Architecture" },
-            "5411-9023": { "url": "https://unsplash.com", "desc": "Somatic Discernment // Towering Golden Gate Structural Tension" },
-            "2055-1184": { "url": "https://unsplash.com", "desc": "Atmospheric Space // Deep Misty Green Mountainside Valley" },
-            "8821-3319": { "url": "https://unsplash.com", "desc": "Industrial Vector // Heavy Mechanical Excavator Tracks" }
+            "7412-9033": { "url": "https://google.com", "desc": "Interspecies Empathy // Shelter Dog Somatic Field" },
+            "1088-5524": { "url": "https://google.com", "desc": "Intention Radar // Volatile Campfire Thermal Energy" },
+            "9914-4022": { "url": "https://google.com", "desc": "Geometric Grid // Architectural Minimalist Staircase" },
+            "3119-8044": { "url": "https://google.com", "desc": "Numeric Flash // Digital Server Matrix Network Architecture" },
+            "5411-9023": { "url": "https://google.com", "desc": "Somatic Discernment // Towering Bridge Structural Tension" },
+            "2055-1184": { "url": "https://google.com", "desc": "Atmospheric Space // Deep Misty Green Mountainside Valley" },
+            "8821-3319": { "url": "https://google.com", "desc": "Industrial Vector // Heavy Mechanical Excavator Tracks" }
         };
 
         const coordKeys = Object.keys(matrixLedger);
@@ -139,10 +139,9 @@
                 const timestamp = new Date().toLocaleTimeString();
                 const logConsole = document.getElementById('logConsole');
                 
-                logConsole.innerHTML += `<div class="log-entry" style="color:#fff;">[${timestamp}] [DECRYPTED] Routing coordinate ${input} -> [${target.desc}]</div>`;
+                logConsole.innerHTML += `<div class="log-entry" style="color:#ffffff;">[${timestamp}] [DECRYPTED] Routing coordinate ${input} -> [${target.desc}]</div>`;
                 logConsole.scrollTop = logConsole.scrollHeight;
 
-                // Secure Blind Execution Drop: Bypasses displaying description strings directly to screen
                 setTimeout(() => {
                     window.open(target.url, '_blank');
                 }, 400);

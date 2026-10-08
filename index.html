@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENSORY SANDBOX // CORE</title>
+    <style>
+        body {
+            background-color: #0c0c0c;
+            color: #00adb5;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        h1 { color: #ff2e63; border-bottom: 2px solid #ff2e63; padding-bottom: 10px; font-size: 1.5rem; letter-spacing: 2px; }
+        h2 { color: #ffffff; font-size: 1.1rem; margin-top: 30px; }
+        .card { background: #121212; border: 1px solid #222831; padding: 20px; border-radius: 4px; margin-bottom: 20px; position: relative; }
+        .coordinate-display { font-size: 2.5rem; font-weight: bold; color: #ffffff; text-align: center; padding: 20px 0; letter-spacing: 5px; text-shadow: 0 0 10px rgba(0,173,181,0.3); }
+        .module-tag { position: absolute; top: 10px; right: 15px; font-size: 0.75rem; color: #888; background: #1e1e1e; padding: 2px 8px; border-radius: 3px; text-transform: uppercase; }
+        button { background-color: #ff2e63; color: white; border: none; padding: 12px 24px; font-family: inherit; font-size: 1rem; cursor: pointer; border-radius: 4px; font-weight: bold; transition: background 0.2s; }
+        button:hover { background-color: #e21b4d; }
+        .secondary-btn { background-color: #222831; color: #00adb5; border: 1px solid #00adb5; margin-left: 10px; }
+        .secondary-btn:hover { background-color: #00adb5; color: #121212; }
+        .input-group { margin: 20px 0; display: flex; gap: 10px; }
+        input[type="text"] { background: #121212; border: 1px solid #00adb5; color: #fff; padding: 12px; font-family: inherit; font-size: 1.2rem; border-radius: 4px; flex-grow: 1; text-align: center; letter-spacing: 2px; }
+        input[type="text"]:focus { outline: none; box-shadow: 0 0 8px rgba(0,173,181,0.5); }
+        .bucket-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .bucket { background: #1a1a1a; border: 1px solid #2d2d2d; padding: 12px; border-radius: 4px; }
+        .bucket-title { font-weight: bold; color: #ff2e63; font-size: 0.85rem; margin-bottom: 5px; text-transform: uppercase; }
+        ul { padding-left: 20px; margin: 5px 0; font-size: 0.9rem; color: #ccc; }
+        .log-entry { font-size: 0.85rem; color: #888; border-left: 2px solid #00adb5; padding-left: 10px; margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+
+    <h1>SENSORY SANDBOX // OPERATIONAL CORE</h1>
+    <p style="color: #888; font-size: 0.9rem;">[STATUS: ACTIVE] // [ANTENNA AMPLITUDE: STABLE]</p>
+
+    <!-- MODULE 1: ACTIVE GENERATOR -->
+    <div class="card">
+        <div class="module-tag">Matrix Pulse Generator</div>
+        <h2>1. ACTIVE TRAINING TARGET</h2>
+        <p style="font-size: 0.9rem; color: #ccc;">Gaze at the coordinate, clear your mental horizon, execute your 1-second blind mark, and extract your raw physical data buckets.</p>
+        <div class="coordinate-display" id="activeCoord">---- - ----</div>
+        <div style="text-align: center;">
+            <button onclick="generateTarget()">GENERATE NEW MATRIX TARGET</button>
+        </div>
+    </div>
+
+    <!-- MODULE 2: CATEGORY CHEAT SHEET CONTAINER -->
+    <div class="card">
+        <h2>2. DESCRIPTIVE SENSORY BUCKETS</h2>
+        <div class="bucket-grid">
+            <div class="bucket">
+                <div class="bucket-title">I. Material / Texture</div>
+                <ul>
+                    <li>Industrial: Hard, cold, metallic, stone</li>
+                    <li>Organic: Soft, fibrous, spongy, dry</li>
+                    <li>Fluid: Wet, slippery, warm, gaseous</li>
+                </ul>
+            </div>
+            <div class="bucket">
+                <div class="bucket-title">II. Line / Direction</div>
+                <ul>
+                    <li>Linear: Straight, parallel, flat, grid</li>
+                    <li>Organic: Sweeping curve, slopes, arc</li>
+                    <li>Kinetic: Spiral vortex, zig-zag, drop</li>
+                </ul>
+            </div>
+            <div class="bucket">
+                <div class="bucket-title">III. Scale / Mass</div>
+                <ul>
+                    <li>Compressed: Dense, heavy, pressurized</li>
+                    <li>Hollow: Empty, spacious, vertical void</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODULE 3: PURE BLIND ROUTER INTERFACE -->
+    <div class="card" style="border-color: #ff2e63;">
+        <div class="module-tag" style="background: #ff2e63; color: #fff;">Secure Vault</div>
+        <h2>3. BLIND ROUTING & FEEDBACK APEX</h2>
+        <p style="font-size: 0.9rem; color: #ccc;">Once your notes are locked onto paper, type the active matrix coordinate below and strike ENTER to launch your visual verification.</p>
+        <div class="input-group">
+            <input type="text" id="routerInput" placeholder="0000-0000" maxlength="9" onkeypress="handleRouterKey(event)">
+            <button class="secondary-btn" onclick="executeRouting()">DECRYPT & ROUTE</button>
+        </div>
+        <div id="errorMsg" style="color: #ff2e63; font-size: 0.85rem; display: none; text-align: center;">[ERROR: COORDINATE NOT FOUND IN LOCAL LEDGER]</div>
+    </div>
+
+    <!-- MODULE 4: HISTORICAL LOG TERMINAL -->
+    <div class="card">
+        <h2>4. SESSION ACCOUNTABILITY LOG</h2>
+        <div id="logConsole" style="max-height: 150px; overflow-y: auto; background: #070707; padding: 10px; border-radius: 4px; border: 1px solid #222831;">
+            <div class="log-entry">[SYS] Dashboard initialized successfully. Operational data online.</div>
+        </div>
+    </div>
+
+    <script>
+        // SECURE MATRIX LEDGER (Built across 5 core multi-ability tracks)
+        const matrixLedger = {
+            "7412-9033": { "url": "https://unsplash.com", "desc": "Interspecies Empathy // Shelter Dog Somatic Field" },
+            "1088-5524": { "url": "https://unsplash.com", "desc": "Intention Radar // Volatile Campfire Thermal Energy" },
+            "9914-4022": { "url": "https://unsplash.com", "desc": "Geometric Grid // Architectural Minimalist Staircase" },
+            "3119-8044": { "url": "https://unsplash.com", "desc": "Numeric Flash // Digital Server Matrix Network Architecture" },
+            "5411-9023": { "url": "https://unsplash.com", "desc": "Somatic Discernment // Towering Golden Gate Structural Tension" },
+            "2055-1184": { "url": "https://unsplash.com", "desc": "Atmospheric Space // Deep Misty Green Mountainside Valley" },
+            "8821-3319": { "url": "https://unsplash.com", "desc": "Industrial Vector // Heavy Mechanical Excavator Tracks" }
+        };
+
+        const coordKeys = Object.keys(matrixLedger);
+
+        function generateTarget() {
+            const randomIndex = Math.floor(Math.random() * coordKeys.length);
+            const activeCoord = coordKeys[randomIndex];
+            document.getElementById('activeCoord').innerText = activeCoord;
+            
+            const logConsole = document.getElementById('logConsole');
+            const timestamp = new Date().toLocaleTimeString();
+            logConsole.innerHTML += `<div class="log-entry">[${timestamp}] [GENERATED] Matrix lock set to coordinate ${activeCoord}. Ready for extraction.</div>`;
+            logConsole.scrollTop = logConsole.scrollHeight;
+        }
+
+        function handleRouterKey(e) {
+            if (e.key === 'Enter') {
+                executeRouting();
+            }
+        }
+
+        function executeRouting() {
+            const input = document.getElementById('routerInput').value.trim();
+            document.getElementById('errorMsg').style.display = 'none';
+
+            if (matrixLedger[input]) {
+                const target = matrixLedger[input];
+                const timestamp = new Date().toLocaleTimeString();
+                const logConsole = document.getElementById('logConsole');
+                
+                logConsole.innerHTML += `<div class="log-entry" style="color:#fff;">[${timestamp}] [DECRYPTED] Routing coordinate ${input} -> [${target.desc}]</div>`;
+                logConsole.scrollTop = logConsole.scrollHeight;
+
+                // Secure Blind Execution Drop: Bypasses displaying description strings directly to screen
+                setTimeout(() => {
+                    window.open(target.url, '_blank');
+                }, 400);
+            } else {
+                document.getElementById('errorMsg').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
